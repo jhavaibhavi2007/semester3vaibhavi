@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightgray;
+            text-align: center;
+        }
+
+        .box {
+            background-color: white;
+            width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        .question {
+            text-align: left;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid gray;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+
+        #quiz {
+            display: none;
+        }
+
+        #result {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <!-- Student Details -->
+
+        <div id="studentForm">
+
+            <h1>JavaScript Quiz</h1>
+
+            <p>Enter Your Details</p>
+
+            <input type="text" id="name" placeholder="Name">
+            <br>
+
+            <input type="text" id="roll" placeholder="Roll No">
+            <br>
+
+            <input type="text" id="section" placeholder="Section">
+            <br><br>
+
+            <button onclick="startQuiz()">Start Quiz</button>
+
+        </div>
+
+
+        <!-- Quiz -->
+
+        <div id="quiz">
+
+            <h1>Quiz</h1>
+
+            <div class="question">
+
+                <p><b>1. Which language is used to make a webpage interactive?</b></p>
+
+                <input type="radio" name="q1" value="A"> HTML
+                <br>
+
+                <input type="radio" name="q1" value="B"> CSS
+                <br>
+
+                <input type="radio" name="q1" value="C"> JavaScript
+                <br>
+
+                <input type="radio" name="q1" value="D"> SQL
+
+            </div>
+
+
+            <div class="question">
+
+                <p><b>2. Which symbol is used for a single-line comment in JavaScript?</b></p>
+
+                <input type="radio" name="q2" value="A"> //
+                <br>
+
+                <input type="radio" name="q2" value="B"> ##
+                <br>
+
+                <input type="radio" name="q2" value="C"> **
+                <br>
+
+                <input type="radio" name="q2" value="D"> &lt;!-- --&gt;
+
+            </div>
+
+
+            <div class="question">
+
+                <p><b>3. Which keyword is used to declare a variable?</b></p>
+
+                <input type="radio" name="q3" value="A"> var
+                <br>
+
+                <input type="radio" name="q3" value="B"> print
+                <br>
+
+                <input type="radio" name="q3" value="C"> display
+                <br>
+
+                <input type="radio" name="q3" value="D"> show
+
+            </div>
+
+
+            <div class="question">
+
+                <p><b>4. Which function displays output in the console?</b></p>
+
+                <input type="radio" name="q4" value="A"> print()
+                <br>
+
+                <input type="radio" name="q4" value="B"> console.log()
+                <br>
+
+                <input type="radio" name="q4" value="C"> display()
+                <br>
+
+                <input type="radio" name="q4" value="D"> output()
+
+            </div>
+
+
+            <div class="question">
+
+                <p><b>5. Which function is used to show a popup message?</b></p>
+
+                <input type="radio" name="q5" value="A"> message()
+                <br>
+
+                <input type="radio" name="q5" value="B"> popup()
+                <br>
+
+                <input type="radio" name="q5" value="C"> alert()
+                <br>
+
+                <input type="radio" name="q5" value="D"> show()
+
+            </div>
+
+
+            <button onclick="submitQuiz()">Submit Quiz</button>
+
+        </div>
+
+
+        <!-- Result -->
+
+        <div id="result">
+
+            <h1>Quiz Result</h1>
+
+            <p id="details"></p>
+
+            <h2 id="marks"></h2>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function startQuiz() {
+
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+            let section = document.getElementById("section").value;
+
+            if (name == "" || roll == "" || section == "") {
+
+                alert("Please enter all details");
+
+                return;
+            }
+
+            document.getElementById("studentForm").style.display = "none";
+
+            document.getElementById("quiz").style.display = "block";
+        }
+
+
+        function submitQuiz() {
+
+            let score = 0;
+
+
+            // Question 1
+            let q1 = document.querySelector('input[name="q1"]:checked');
+
+            if (q1 != null && q1.value == "C") {
+                score++;
+            }
+
+
+            // Question 2
+            let q2 = document.querySelector('input[name="q2"]:checked');
+
+            if (q2 != null && q2.value == "A") {
+                score++;
+            }
+
+
+            // Question 3
+            let q3 = document.querySelector('input[name="q3"]:checked');
+
+            if (q3 != null && q3.value == "A") {
+                score++;
+            }
+
+
+            // Question 4
+            let q4 = document.querySelector('input[name="q4"]:checked');
+
+            if (q4 != null && q4.value == "B") {
+                score++;
+            }
+
+
+            // Question 5
+            let q5 = document.querySelector('input[name="q5"]:checked');
+
+            if (q5 != null && q5.value == "C") {
+                score++;
+            }
+
+
+            let name = document.getElementById("name").value;
+            let roll = document.getElementById("roll").value;
+            let section = document.getElementById("section").value;
+
+
+            document.getElementById("quiz").style.display = "none";
+
+            document.getElementById("result").style.display = "block";
+
+
+            document.getElementById("details").innerText =
+                "Name: " + name +
+                " | Roll No: " + roll +
+                " | Section: " + section;
+
+
+            document.getElementById("marks").innerText =
+                "Marks: " + score + " / 5";
+
+        }
+
+    </script>
+
+</body>
+</html>
+
